@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="p-6">
+    <h2 class="text-lg font-medium mb-4">New Column</h2>
+    <%= render "form", column: @column, board: @board %>
+  </div>
+<% end %>

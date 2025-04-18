@@ -56,7 +56,7 @@ class ColumnsController < ApplicationController
     @column.destroy!
 
     respond_to do |format|
-      format.html { redirect_to columns_path, status: :see_other, notice: "Column was successfully destroyed." }
+      format.html { redirect_to @column.board, status: :see_other, notice: "Column was successfully destroyed." }
       format.json { head :no_content }
     end
   end
