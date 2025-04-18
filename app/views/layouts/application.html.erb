@@ -16,6 +16,7 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
@@ -24,13 +25,24 @@
 
   <body>
   <%= render "shared/navbar" %>
-<!-- render all notice messages -->
+<!-- render all notice messages fixed on the bottom of the page -->
 <% if notice %>
-  <div class="notice bg-green-500 text-white p-2 rounded-md"><%= notice %></div>
+  <div class="notice bg-green-500 text-white p-2 rounded-md fixed bottom-0 right-0 m-4"><%= notice %></div>
 <% end %>
 
-    <main class="container mx-auto mt-4 px-4">
+    <main >
       <%= yield %>
     </main>
+
+    <script>
+    // after the page is loaded, we close all notices after 3 seconds
+    document.addEventListener("DOMContentLoaded", function() {
+      setTimeout(function() {
+        document.querySelectorAll(".notice").forEach(function(notice) {
+          notice.remove();
+        });
+      }, 5000);
+    });
+    </script>
   </body>
 </html>

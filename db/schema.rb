@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_18_093731) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_18_181755) do
   create_table "boards", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -18,6 +18,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_18_093731) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_boards_on_user_id"
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "column_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "priority"
+    t.index ["column_id"], name: "index_cards_on_column_id"
+  end
+
+  create_table "columns", force: :cascade do |t|
+    t.string "name"
+    t.integer "board_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_columns_on_board_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -38,5 +56,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_18_093731) do
   end
 
   add_foreign_key "boards", "users"
+  add_foreign_key "cards", "columns"
+  add_foreign_key "columns", "boards"
   add_foreign_key "sessions", "users"
 end

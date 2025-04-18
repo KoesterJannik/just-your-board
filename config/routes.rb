@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :cards
+  resources :columns
   resources :boards
   resource :session
   resources :passwords, param: :token
@@ -12,7 +14,11 @@ Rails.application.routes.draw do
   get "register" => "home#register"
   post "register" => "home#create_account"
   root "home#index"
-  resources :boards
+  resources :boards do
+    resources :columns do
+      resources :cards
+    end
+  end
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
