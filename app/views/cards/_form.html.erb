@@ -28,17 +28,17 @@
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <i class="fas fa-heading text-gray-400"></i>
         </div>
-        <%= form.text_field :title, 
+        <%= form.text_field :name, 
             class: ["block w-full pl-10 pr-3 py-2.5 rounded-lg border transition-colors duration-200 ease-in-out", 
                    {"border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200": card.errors[:title].none?,
                     "border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-2 focus:ring-red-200": card.errors[:title].any?}],
-            placeholder: "Enter card title",
+            placeholder: "Enter card name",
             required: true,
             minlength: 1,
             maxlength: 50 %>
       </div>
-      <% if card.errors[:title].any? %>
-        <p class="mt-2 text-sm text-red-600"><%= card.errors[:title].first %></p>
+      <% if card.errors[:name].any? %>
+        <p class="mt-2 text-sm text-red-600"><%= card.errors[:name].first %></p>
       <% end %>
     </div>
 
@@ -58,6 +58,24 @@
       </div>
       <% if card.errors[:description].any? %>
         <p class="mt-2 text-sm text-red-600"><%= card.errors[:description].first %></p>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.label :priority, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <div class="mt-1 relative rounded-md shadow-sm">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <i class="fas fa-flag text-gray-400"></i>
+        </div>
+        <%= form.select :priority, 
+            Card.priorities.keys.map { |p| [p.capitalize, p] },
+            { selected: 'low' },
+            class: ["block w-full pl-10 pr-3 py-2.5 rounded-lg border transition-colors duration-200 ease-in-out", 
+                   {"border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200": card.errors[:priority].none?,
+                    "border-red-300 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-2 focus:ring-red-200": card.errors[:priority].any?}] %>
+      </div>
+      <% if card.errors[:priority].any? %>
+        <p class="mt-2 text-sm text-red-600"><%= card.errors[:priority].first %></p>
       <% end %>
     </div>
   </div>

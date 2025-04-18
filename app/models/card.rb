@@ -1,7 +1,7 @@
 class Card < ApplicationRecord
   belongs_to :column
   validates :name, presence: true
-  validates :description, presence: true
+
   validates :priority, presence: true
 
   enum :priority, {
