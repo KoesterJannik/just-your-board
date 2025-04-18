@@ -17,6 +17,9 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
@@ -27,7 +30,17 @@
   <%= render "shared/navbar" %>
 <!-- render all notice messages fixed on the bottom of the page -->
 <% if notice %>
-  <div class="notice bg-green-500 text-white p-2 rounded-md fixed bottom-0 right-0 m-4"><%= notice %></div>
+  <div data-controller="notice" class="notice bg-green-500 text-white p-4 rounded-lg fixed bottom-0 right-0 m-4 shadow-lg transform transition-all duration-300 ease-in-out translate-y-4 opacity-0 flex items-center space-x-3 max-w-md">
+    <div class="flex-shrink-0">
+      <i class="fas fa-check-circle text-xl"></i>
+    </div>
+    <div class="flex-1">
+      <%= notice %>
+    </div>
+    <button data-action="click->notice#dismiss" class="flex-shrink-0 text-white hover:text-green-100 focus:outline-none">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
 <% end %>
 
     <main >

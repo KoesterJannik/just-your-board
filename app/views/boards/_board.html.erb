@@ -16,7 +16,7 @@
               <i class="fas fa-plus mr-2"></i> New Column
             </button>
            <div data-modal-target="container" class="fixed inset-0 z-50 hidden">
-  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+  <div class="fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity"></div>
   
   <div class="fixed inset-0 z-10 overflow-y-auto">
     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -50,7 +50,7 @@
                 <i class="fas fa-edit mr-1"></i> Edit Board
               </button>
               <div data-modal-target="container" class="fixed inset-0 z-50 hidden">
-                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                <div class="fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity"></div>
                 
                 <div class="fixed inset-0 z-10 overflow-y-auto">
                   <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -132,7 +132,7 @@
                     <i class="fas fa-plus"></i>
                   </button>
                   <div data-modal-target="container" class="fixed inset-0 z-50 hidden">
-                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                    <div class="fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity"></div>
                     
                     <div class="fixed inset-0 z-10 overflow-y-auto">
                       <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -167,7 +167,7 @@
                     <i class="fas fa-edit"></i>
                   </button>
                   <div data-modal-target="container" class="fixed inset-0 z-50 hidden">
-                    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                    <div class="fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity"></div>
                     
                     <div class="fixed inset-0 z-10 overflow-y-auto">
                       <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -216,7 +216,15 @@
                 <%# Card Content %>
                 <div class="p-4">
                   <div class="flex items-start justify-between" draggable="true" id="<%= dom_id(card) %>"  ondragstart="dragstartHandler(event)">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center rounded text-xs font-medium <%= priority_color_class(card.priority) %>">
+                      <%= card.priority.humanize %>
+                    </span>
                     <h3 class="text-sm font-medium text-gray-900"><%= card.name %></h3>
+                      <% if card.priority.present? %>
+                  
+                  </div>
+                  <% end %>
                     <div class="flex items-center gap-2">
                       <div data-controller="modal">
                         <button type="button" 
@@ -226,7 +234,7 @@
                           <i class="fas fa-edit"></i>
                         </button>
                         <div data-modal-target="container" class="fixed inset-0 z-50 hidden">
-                          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                          <div class="fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity"></div>
                           
                           <div class="fixed inset-0 z-10 overflow-y-auto">
                             <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -262,19 +270,21 @@
                     </div>
                   </div>
 
-                  <% if card.priority.present? %>
-                    <span class="inline-flex items-center mt-2 px-2 py-0.5 rounded text-xs font-medium <%= priority_color_class(card.priority) %>">
-                      <%= card.priority.humanize %>
-                    </span>
-                  <% end %>
+                
 
                   <% if card.description.present? %>
                     <p class="mt-2 text-sm text-gray-600"><%= card.description %></p>
                   <% end %>
 
+                  <div class="flex items-center justify-between">
                   <div class="mt-3 flex items-center text-xs text-gray-400">
                     <i class="fas fa-clock mr-1"></i>
                     <%= card.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+
+                    </div>
+                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=<%= Current.user.email_address %>" 
+                   alt="Avatar" 
+                   class="h-8 w-8 rounded-full bg-gray-100" />
                   </div>
                 </div>
               </div>

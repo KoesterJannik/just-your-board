@@ -59,7 +59,7 @@ class BoardsController < ApplicationController
     @board.destroy!
 
     respond_to do |format|
-      format.html { redirect_to boards_path, status: :see_other, notice: "Board was successfully destroyed." }
+      format.html { redirect_to dashboard_path, status: :see_other, notice: "Board was successfully destroyed." }
       format.json { head :no_content }
     end
   end
