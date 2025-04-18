@@ -24,7 +24,7 @@
     <%= form.label :priority %>
     <%= form.select :priority, 
                    Card.priorities.keys.map { |p| [p.titleize, p] }, 
-                   { include_blank: "Select priority" }, 
+                   { selected: "low" }, 
                    class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", 
                           {"border-gray-400 focus:outline-blue-600": card.errors[:priority].none?, 
                            "border-red-400 focus:outline-red-600": card.errors[:priority].any?}] %>

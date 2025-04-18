@@ -1,12 +1,19 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
+  static targets = ["container"];
+
   connect() {
-    // Show modal when content is loaded
-    this.element.classList.remove("hidden");
+    console.log("Modal controller connected");
+  }
+
+  show() {
+    this.containerTarget.classList.remove("hidden");
+    document.body.classList.add("overflow-hidden");
   }
 
   close() {
-    this.element.classList.add("hidden");
+    this.containerTarget.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
   }
 }

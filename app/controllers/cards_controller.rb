@@ -19,9 +19,40 @@ class CardsController < ApplicationController
   def edit
   end
 
+  def update_positions
+    request_body = JSON.parse(request.body.read)
+    puts "Received parameters: #{request_body.inspect}"
+    column = Column.find(request_body["column_id"])
+    card_order = request_body["card_order"]
+    puts "Card order: #{card_order.inspect}"
+    counter  = 0
+    
+    for card in card_order
+      puts "Card: #{card.inspect}"
+
+      card_id = card["cardId"]
+      card = Card.find(card_id)
+      card.update(column: column)
+      
+    end
+
+    for card in card_order
+      puts "Card: #{card.inspect}"
+      card_id = card["cardId"]
+      card = Card.find(card_id)
+      card.update(position: counter)
+      puts "Card with name: #{card.name} updated to position: #{counter}"
+      counter += 1
+    end
+    render json: { message: "Card positions updated" }
+  end
+
   # POST /cards or /cards.json
   def create
     @card = Card.new(card_params)
+    # get length of cards in column
+    @cards = Card.where(column_id: @card.column_id)
+    @card.position = @cards.length
 
     respond_to do |format|
       if @card.save

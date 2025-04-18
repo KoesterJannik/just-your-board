@@ -9,6 +9,6 @@ class Card < ApplicationRecord
     medium: 1,
     high: 2
   }
-  
-  
+
+  default_scope { includes(:column).order('cards.position ASC') }
 end
