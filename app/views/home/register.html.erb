@@ -1,0 +1,8 @@
+<h1 class="text-3xl font-bold underline">Create an account</h1>
+
+<%= form_with model: @user, url: register_path do |form| %>
+  <%= form.text_field :email_address, placeholder: "Email" %>
+  <%= form.password_field :password, placeholder: "Password" %>
+  <%= form.password_field :password_confirmation, placeholder: "Confirm password" %>
+  <%= form.submit "Create account" %>
+<% end %>

@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <div class="container mx-auto flex justify-between items-center p-4">
+    <div class="navbar-brand">
+      <%= link_to "NSBS Planning", root_path, class: "text-xl font-bold" %>
+    </div>
+    <div class="navbar-menu">
+      <ul class="flex space-x-4">
+        
+        <% if authenticated? %>
+        <li><%= link_to "Dashboard", dashboard_path, class: "hover:underline" %></li>
+         <li><%= button_to "Log out", session_path, method: :delete, class: "hover:underline" %></li>
+          <li class="mr-4 text-gray-600"><%= Current.user.email_address %></li>
+         
+        <% else %>
+        <li><%= link_to "Home", root_path, class: "hover:underline" %></li>
+          <li><%= link_to "Login", new_session_path, class: "hover:underline" %></li>
+          <li><%= link_to "Register", register_path, class: "hover:underline" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav> 

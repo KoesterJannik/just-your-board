@@ -23,7 +23,13 @@
   </head>
 
   <body>
-    <main >
+  <%= render "shared/navbar" %>
+<!-- render all notice messages -->
+<% if notice %>
+  <div class="notice bg-green-500 text-white p-2 rounded-md"><%= notice %></div>
+<% end %>
+
+    <main class="container mx-auto mt-4 px-4">
       <%= yield %>
     </main>
   </body>
