@@ -1,24 +1,20 @@
-# README
+# Drag and Drop Kanban Board for yourself
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple kanband board with drag and drop functionality to learn more about ruby on rails.
 
-Things you may want to cover:
+Right now it only possible to drag cards and not columns.
 
-* Ruby version
+## Setup
 
-* System dependencies
+```bash
+bundle install
+```
 
-* Configuration
+```bash
+rails db:migrate
+```
 
-* Database creation
+```bash
+rails s
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
