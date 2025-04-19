@@ -4,4 +4,4 @@ class DashboardController < ApplicationController
 
     # Dashboard logic goes here
   end
-end 
+end

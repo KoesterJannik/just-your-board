@@ -3,5 +3,4 @@ class Column < ApplicationRecord
   has_many :cards, dependent: :destroy
   # name is required
   validates :name, presence: true
-
 end

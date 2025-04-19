@@ -26,14 +26,14 @@ class CardsController < ApplicationController
     card_order = request_body["card_order"]
     puts "Card order: #{card_order.inspect}"
     counter  = 0
-    
+
     for card in card_order
       puts "Card: #{card.inspect}"
 
       card_id = card["cardId"]
       card = Card.find(card_id)
       card.update(column: column)
-      
+
     end
 
     for card in card_order

@@ -8,9 +8,6 @@ class BoardsController < ApplicationController
 
   # GET /boards/1 or /boards/1.json
   def show
-    
-
-
   end
 
   # GET /boards/new
