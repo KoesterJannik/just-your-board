@@ -1,19 +1,19 @@
-<div id="<%= dom_id board %>" class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8">
-  <div class="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
+<div id="<%= dom_id board %>" class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-4 sm:py-8">
+  <div class="max-w-[1800px] mx-auto px-3 sm:px-6 lg:px-8">
     <%# Board Header %>
-    <div class="mb-8">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div class="mb-4 sm:mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
         <div>
-          <h1 class="text-3xl font-bold text-gray-900"><%= @board.title %></h1>
-          <p class="mt-1 text-sm text-gray-500"><%= @board.description %></p>
+          <h1 class="text-xl sm:text-3xl font-bold text-gray-900"><%= @board.title %></h1>
+          <p class="mt-1 text-xs sm:text-sm text-gray-500"><%= @board.description %></p>
         </div>
         
-        <div class="flex flex-wrap items-center gap-3">
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3">
           <div data-controller="modal">
             <button type="button" 
-                    class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+                    class="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-indigo-600 text-white text-xs sm:text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
                     data-action="click->modal#show">
-              <i class="fas fa-plus mr-2"></i> New Column
+              <i class="fas fa-plus mr-1 sm:mr-2"></i> New Column
             </button>
            <div data-modal-target="container" class="fixed inset-0 z-50 hidden">
   <div class="fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity"></div>
@@ -45,7 +45,7 @@
           <div class="flex items-center gap-2">
             <div data-controller="modal">
               <button type="button" 
-                      class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+                      class="inline-flex items-center px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
                       data-action="click->modal#show">
                 <i class="fas fa-edit mr-1"></i> Edit Board
               </button>
@@ -103,7 +103,7 @@
             </div>
             
             <%= button_to @board, method: :delete, 
-                class: "inline-flex items-center px-3 py-2 border border-red-300 shadow-sm text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors",
+                class: "inline-flex items-center px-2 sm:px-3 py-1.5 sm:py-2 border border-red-300 shadow-sm text-xs sm:text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors",
                 data: { turbo_confirm: "Are you sure? This action cannot be undone." } do %>
               <i class="fas fa-trash mr-1"></i> Delete Board
             <% end %>
@@ -113,17 +113,17 @@
     </div>
 
     <%# Kanban Board %>
-    <div class="flex gap-6 overflow-x-auto pb-8 min-h-[calc(100vh-12rem)]">
+    <div class="flex gap-3 sm:gap-6 overflow-x-auto pb-4 sm:pb-8 min-h-[calc(100vh-8rem)] sm:min-h-[calc(100vh-12rem)]">
       <% board.columns.each do |column| %>
-        <div class="flex-shrink-0 w-80 bg-gray-50 rounded-lg shadow-sm border border-gray-200"
+        <div class="flex-shrink-0 w-64 sm:w-80 bg-gray-50 rounded-lg shadow-sm border border-gray-200"
              ondrop="dropHandler(event)" 
              ondragover="dragoverHandler(event)"
              data-column-id="<%= column.id %>">
           <%# Column Header %>
-          <div class="p-4 bg-white rounded-t-lg border-b border-gray-200">
+          <div class="p-3 sm:p-4 bg-white rounded-t-lg border-b border-gray-200">
             <div class="flex items-center justify-between group">
               <div class="flex items-center gap-2">
-                <h2 class="text-sm font-semibold text-gray-900"><%= column.name %></h2>
+                <h2 class="text-xs sm:text-sm font-semibold text-gray-900"><%= column.name %></h2>
                 <div data-controller="modal">
                   <button type="button" 
                           class="text-gray-400 hover:text-green-600 transition-colors"
@@ -203,28 +203,27 @@
           </div>
 
           <%# Cards Container %>
-          <div class="p-4 space-y-3" data-cards-container>
+          <div class="p-3 sm:p-4 space-y-2 sm:space-y-3" data-cards-container>
             <% column.cards.each do |card| %>
               <%# Drop Zone Above Card %>
               <div class="h-2 rounded-md transition-all duration-200" data-drop-zone></div>
               
-              <div class="group relative bg-white rounded-lg shadow-sm border-l-4 hover:shadow-md transition-shadow duration-200 <%= priority_border_color_class(card.priority) if card.priority.present? %>"
+              <div class="
+              cursor-grab
+              group relative bg-white rounded-lg shadow-sm border-l-4 hover:shadow-md transition-shadow duration-200 <%= priority_border_color_class(card.priority) if card.priority.present? %>"
                    draggable="true"
                    id="<%= dom_id(card) %>"
                    ondragstart="dragstartHandler(event)"
                    data-card-id="<%= card.id %>">
                 <%# Card Content %>
-                <div class="p-4">
-                  <div class="flex items-start justify-between" draggable="true" id="<%= dom_id(card) %>"  ondragstart="dragstartHandler(event)">
-                  <div class="flex items-center gap-2">
-                    <span class="inline-flex items-center rounded text-xs font-medium <%= priority_color_class(card.priority) %>">
-                      <%= card.priority.humanize %>
-                    </span>
-                    <h3 class="text-sm font-medium text-gray-900"><%= card.name %></h3>
-                      <% if card.priority.present? %>
-                  
-                  </div>
-                  <% end %>
+                <div class="p-3 sm:p-4">
+                  <div class="flex items-start justify-between">
+                    <div class="flex items-center gap-2">
+                      <span class="inline-flex items-center rounded text-xs font-medium <%= priority_color_class(card.priority) %>">
+                        <%= card.priority.humanize %>
+                      </span>
+                      <h3 class="text-xs sm:text-sm font-medium text-gray-900"><%= card.name %></h3>
+                    </div>
                     <div class="flex items-center gap-2">
                       <div data-controller="modal">
                         <button type="button" 
@@ -270,21 +269,18 @@
                     </div>
                   </div>
 
-                
-
                   <% if card.description.present? %>
-                    <p class="mt-2 text-sm text-gray-600"><%= card.description %></p>
+                    <p class="mt-2 text-xs sm:text-sm text-gray-600"><%= card.description %></p>
                   <% end %>
 
-                  <div class="flex items-center justify-between">
-                  <div class="mt-3 flex items-center text-xs text-gray-400">
-                    <i class="fas fa-clock mr-1"></i>
-                    <%= card.created_at.strftime("%B %d, %Y at %I:%M %p") %>
-
+                  <div class="flex items-center justify-between mt-2 sm:mt-3">
+                    <div class="flex items-center text-xs text-gray-400">
+                      <i class="fas fa-clock mr-1"></i>
+                      <%= card.created_at.strftime("%b %d, %Y") %>
                     </div>
-                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=<%= Current.user.email_address %>" 
-                   alt="Avatar" 
-                   class="h-8 w-8 rounded-full bg-gray-100" />
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=<%= Current.user.email_address %>" 
+                         alt="Avatar" 
+                         class="h-6 w-6 sm:h-8 sm:w-8 rounded-full bg-gray-100" />
                   </div>
                 </div>
               </div>
@@ -317,11 +313,44 @@ async function updateCardPositions(colId, cardOrder) {
           card_order: cardOrder })
     });
     }
-function dragstartHandler(event) {
-  event.dataTransfer.setData("text/plain", event.target.id);
-  event.target.style.opacity = '0.5';
+function resetAllDropZones() {
+  // Remove all existing drop zones
+  document.querySelectorAll('[data-drop-zone]').forEach(zone => {
+    zone.remove();
+  });
   
-  // Hide the source card's adjacent drop zones during drag
+  // Recreate drop zones in their correct positions
+  document.querySelectorAll('[data-cards-container]').forEach(container => {
+    const cards = container.querySelectorAll('[data-card-id]');
+    cards.forEach(card => {
+      const dropZone = document.createElement('div');
+      dropZone.className = 'h-2 rounded-md transition-all duration-200';
+      dropZone.setAttribute('data-drop-zone', '');
+      card.before(dropZone);
+    });
+    
+    // Add final drop zone at the end
+    const finalDropZone = document.createElement('div');
+    finalDropZone.className = 'h-2 rounded-md transition-all duration-200';
+    finalDropZone.setAttribute('data-drop-zone', '');
+    container.appendChild(finalDropZone);
+  });
+}
+
+function dragstartHandler(event) {
+  // Reset everything before starting new drag
+  resetAllDropZones();
+  
+  event.dataTransfer.setData("text/plain", event.target.id);
+  
+
+  
+  // Show all drop zones immediately when dragging starts
+  document.querySelectorAll('[data-drop-zone]').forEach(zone => {
+    zone.classList.add('h-12', 'bg-indigo-50', 'border-2', 'border-dashed', 'border-indigo-200');
+  });
+  
+  // Hide the drop zones adjacent to the dragged card
   const sourceCard = event.target;
   const dropZones = sourceCard.parentElement.querySelectorAll('[data-drop-zone]');
   dropZones.forEach(zone => {
@@ -337,31 +366,35 @@ function dragoverHandler(event) {
   const dropZone = event.target.closest('[data-drop-zone]');
   const column = event.target.closest('[data-column-id]');
   
-  // Reset all drop zones
+  // Reset all drop zones to base state
   document.querySelectorAll('[data-drop-zone]').forEach(zone => {
-    zone.classList.remove('h-8', 'bg-indigo-100', 'border-2', 'border-dashed', 'border-indigo-200');
+    zone.classList.remove('bg-indigo-100');
+    zone.classList.add('bg-indigo-50');
   });
   
   // Highlight current drop zone
   if (dropZone) {
-    dropZone.classList.add('h-8', 'bg-indigo-100', 'border-2', 'border-dashed', 'border-indigo-200');
+    dropZone.classList.remove('bg-indigo-50');
+    dropZone.classList.add('bg-indigo-100');
   } else if (column) {
-    column.classList.add('bg-gray-100');
+    // If hovering over column, show a drop zone at the top
+    const cardsContainer = column.querySelector('[data-cards-container]');
+    if (cardsContainer) {
+      const firstDropZone = cardsContainer.querySelector('[data-drop-zone]');
+      if (firstDropZone) {
+        firstDropZone.classList.remove('bg-indigo-50');
+        firstDropZone.classList.add('bg-indigo-100');
+      }
+    }
   }
 }
 
 function dragendHandler(event) {
-  event.target.style.opacity = '1';
+  // Remove the opacity class from the dragged card
+  event.target.classList.remove('opacity-50');
   
   // Reset all visual states
-  document.querySelectorAll('[data-column-id]').forEach(column => {
-    column.classList.remove('bg-gray-100');
-  });
-  
-  document.querySelectorAll('[data-drop-zone]').forEach(zone => {
-    zone.classList.remove('h-8', 'bg-indigo-100', 'border-2', 'border-dashed', 'border-indigo-200');
-    zone.style.display = 'block';
-  });
+  resetAllDropZones();
 }
 
 // Move this function outside dropHandler
@@ -398,26 +431,29 @@ function dropHandler(event) {
     const cardOrder = getListOfCardsInColumn(colId);
     updateCardPositions(colId, cardOrder);
   } else if (targetColumn) {
-    // If dropped directly on column, append to the end
+    // If dropped directly on column, insert at the top
     const cardsContainer = targetColumn.querySelector('[data-cards-container]');
     if (cardsContainer) {
-      cardsContainer.appendChild(card);
+      const firstDropZone = cardsContainer.querySelector('[data-drop-zone]');
+      if (firstDropZone) {
+        firstDropZone.after(card);
+      } else {
+        cardsContainer.appendChild(card);
+      }
       const colId = targetColumn.getAttribute('data-column-id');
       const cardOrder = getListOfCardsInColumn(colId);
-
       updateCardPositions(colId, cardOrder);
     }
   }
   
-  // Reset the drop zone heights
-  document.querySelectorAll('[data-drop-zone]').forEach(zone => {
-    zone.classList.remove('h-8', 'bg-indigo-100', 'border-2', 'border-dashed', 'border-indigo-200');
-    zone.style.display = 'block';
-  });
+  // Reset all drop zones after dropping
+  resetAllDropZones();
 }
 
-// Add global event listeners
+// Initialize drop zones when the page loads
 document.addEventListener('DOMContentLoaded', function() {
+  resetAllDropZones();
+  
   document.querySelectorAll('[draggable="true"]').forEach(card => {
     card.addEventListener('dragend', dragendHandler);
   });
@@ -425,6 +461,12 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('[data-drop-zone]').forEach(zone => {
     zone.addEventListener('dragover', dragoverHandler);
     zone.addEventListener('drop', dropHandler);
+  });
+  
+  // Add column drop zones
+  document.querySelectorAll('[data-column-id]').forEach(column => {
+    column.addEventListener('dragover', dragoverHandler);
+    column.addEventListener('drop', dropHandler);
   });
 });
 

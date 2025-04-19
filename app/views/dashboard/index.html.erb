@@ -14,6 +14,9 @@
           <% if board.description.present? %>
             <p class="mt-2 text-sm text-gray-600"><%= board.description %></p>
           <% end %>
+
+          <p class="mt-2 text-sm text-gray-600"><%= board.columns.count %> columns</p>
+          <p class="mt-2 text-sm text-gray-600"><%= board.columns.sum { |column| column.cards.count } %> cards</p>
           <div class="mt-4">
             <%= link_to "Open Board", board_path(board), 
                 class: "inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors" %>

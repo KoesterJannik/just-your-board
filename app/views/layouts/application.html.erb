@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Nsbs Planning" %></title>
+    <title><%= content_for(:title) || "Simple Kanban" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@
   <%= render "shared/navbar" %>
 <!-- render all notice messages fixed on the bottom of the page -->
 <% if notice %>
-  <div data-controller="notice" class="notice bg-green-500 text-white p-4 rounded-lg fixed bottom-0 right-0 m-4 shadow-lg transform transition-all duration-300 ease-in-out translate-y-4 opacity-0 flex items-center space-x-3 max-w-md">
+  <div data-controller="notice" class="notice bg-green-500 text-white p-4 mb-2 rounded-lg fixed bottom-2 right-0 m-4 shadow-lg transform transition-all duration-300 ease-in-out translate-y-4 opacity-0 flex items-center space-x-3 max-w-md">
     <div class="flex-shrink-0">
       <i class="fas fa-check-circle text-xl"></i>
     </div>

@@ -1,1 +1,202 @@
-<h1 class="text-3xl font-bold underline">Hello World</h1>
+<!-- Hero Section -->
+<div class="min-h-screen bg-gradient-to-br from-indigo-50 to-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="text-center">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 animate-fade-in">
+        Organize Your Work
+        <span class="text-indigo-600">Effortlessly</span>
+      </h1>
+      <p class="mt-6 text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up">
+        A powerful Kanban board that helps you visualize your workflow, track progress, and boost productivity.
+      </p>
+      <div class="mt-10 animate-fade-in-up">
+        <%= link_to "Get Started", register_path, class: "inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105" %>
+      </div>
+    </div>
+
+    <!-- Feature Preview -->
+    <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Drag & Drop -->
+      <div class="bg-white p-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+        <div class="text-indigo-600 mb-4">
+          <i class="fas fa-arrows-alt text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Intuitive Drag & Drop</h3>
+        <p class="text-gray-600">Move tasks effortlessly between columns with smooth drag and drop functionality.</p>
+      </div>
+
+      <!-- Real-time Updates -->
+      <div class="bg-white p-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+        <div class="text-indigo-600 mb-4">
+          <i class="fas fa-sync text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Real-time Updates</h3>
+        <p class="text-gray-600">See changes instantly across your team with real-time synchronization.</p>
+      </div>
+
+      <!-- Customizable -->
+      <div class="bg-white p-6 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+        <div class="text-indigo-600 mb-4">
+          <i class="fas fa-cogs text-3xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Fully Customizable</h3>
+        <p class="text-gray-600">Tailor your board to your workflow with customizable columns and cards.</p>
+      </div>
+    </div>
+
+    <!-- Demo Board Preview -->
+    <div class="mt-20 bg-white rounded-xl shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl">
+      <div class="p-6">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">See it in Action</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- To Do Column -->
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-gray-700 mb-3">To Do</h3>
+            <div class="space-y-3">
+              <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 border-gray-400">
+                <p class="text-sm font-medium">Design new logo</p>
+              </div>
+              <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 border-gray-400">
+                <p class="text-sm font-medium">Update documentation</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- In Progress Column -->
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-gray-700 mb-3">In Progress</h3>
+            <div class="space-y-3">
+              <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 border-yellow-400">
+                <p class="text-sm font-medium">Implement new features</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Done Column -->
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-gray-700 mb-3">Done</h3>
+            <div class="space-y-3">
+              <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 border-green-400">
+                <p class="text-sm font-medium">Fix bug #123</p>
+              </div>
+              <div class="bg-white p-3 rounded-lg shadow-sm border-l-4 border-green-400">
+                <p class="text-sm font-medium">Deploy to production</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="mt-20 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6">Ready to Get Started?</h2>
+      <p class="text-xl text-gray-600 mb-8">Join thousands of teams who are already using our Kanban board.</p>
+      <div class="flex justify-center space-x-4">
+        <%= link_to "Sign Up Free", register_path, class: "px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105" %>
+        <%= link_to "Learn More", "#", class: "px-8 py-3 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-all duration-300 transform hover:scale-105" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Company Info -->
+      <div class="col-span-1 md:col-span-2">
+        <h3 class="text-2xl font-bold mb-4">Just Your Board</h3>
+        <p class="text-gray-400 mb-4">Streamline your workflow with our intuitive Kanban board solution. Perfect for teams of all sizes.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+            <i class="fab fa-linkedin text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+            <i class="fab fa-github text-xl"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Features</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Pricing</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">About Us</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Resources</h4>
+        <ul class="space-y-2">
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Documentation</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Blog</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Support</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">API</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-gray-800 mt-12 pt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">© 2024 Just Your Board. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Terms of Service</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Add Tailwind Animation Classes -->
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out;
+  }
+</style>

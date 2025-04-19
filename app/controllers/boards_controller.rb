@@ -32,6 +32,14 @@ class BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.save
+        # add three defaults columns: todo, in progress, done
+        @board.columns.create(name: "To Do")
+        # create dummy cards for the board
+        @board.columns.first.cards.create(name: "Card 1", description: "Description 1", priority: "low")
+        @board.columns.first.cards.create(name: "Card 2", description: "Description 2", priority: "medium")
+        @board.columns.first.cards.create(name: "Card 3", description: "Description 3", priority: "high")
+        @board.columns.create(name: "In Progress")
+        @board.columns.create(name: "Done")
         format.html { redirect_to @board, notice: "Board was successfully created." }
         format.json { render :show, status: :created, location: @board }
       else
