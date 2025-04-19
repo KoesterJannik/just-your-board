@@ -11,11 +11,16 @@ class HomeController < ApplicationController
     puts "Creating account"
     puts "received params: #{params.inspect}"
     @user = User.new(user_params)
-    if @user.save
-      redirect_to root_path, notice: "Account created successfully"
+    # check if email is already taken
+    if User.exists?(email_address: @user.email_address)
+      redirect_to register_path, notice: "Email already taken"
     else
+      if @user.save
+        redirect_to root_path, notice: "Account created successfully"
+      else
       # return the errors
-      redirect_to register_path, notice: @user.errors.full_messages.join(", ")
+        redirect_to register_path, notice: @user.errors.full_messages.join(", ")
+      end
     end
   end
 
