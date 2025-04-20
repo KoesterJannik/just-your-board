@@ -11,17 +11,26 @@
         <% if authenticated? %>
           <%= link_to "Dashboard", dashboard_path, class: "text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
           
-          <div class="flex items-center space-x-4">
-            <div class="flex items-center">
+          <div class="relative cursor-pointer" data-controller="popover">
+            <button type="button" 
+                    class="cursor-pointer flex items-center space-x-2 text-gray-600 hover:text-gray-900 focus:outline-none"
+                    data-action="click->popover#toggle">
               <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=<%= Current.user.email_address %>" 
                    alt="Avatar" 
                    class="h-8 w-8 rounded-full bg-gray-100" />
+              <i class="fas fa-chevron-down text-xs transition-transform duration-200" data-popover-target="arrow"></i>
+            </button>
+
+            <div class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-50"
+                 data-popover-target="menu">
+              <div class="py-1" role="menu" aria-orientation="vertical">
+                <%= button_to "Log out", 
+                    session_path, 
+                    method: :delete, 
+                    class: "block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900",
+                    role: "menuitem" %>
+              </div>
             </div>
-            
-            <%= button_to "Log out", 
-                session_path, 
-                method: :delete, 
-                class: "text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
           </div>
         <% else %>
           <div class="flex items-center space-x-4">
