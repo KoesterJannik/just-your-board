@@ -18,7 +18,7 @@ class HomeController < ApplicationController
       if @user.save
         redirect_to root_path, notice: "Account created successfully"
       else
-      # return the errors
+        # return the errors
         redirect_to register_path, notice: @user.errors.full_messages.join(", ")
       end
     end
