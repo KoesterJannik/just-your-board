@@ -9,6 +9,25 @@
         <div>
           <h1 class="text-xl sm:text-3xl font-bold text-gray-900"><%= @board.title %></h1>
           <p class="mt-1 text-xs sm:text-sm text-gray-500"><%= @board.description %></p>
+
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+          <% @all_users_related_to_board.each do |user| %>
+            <div class="relative group">
+              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=<%= user.email_address %>" 
+                   alt="Avatar" 
+                   class="h-6 w-6 sm:h-8 sm:w-8 rounded-full bg-gray-100" />
+              
+              <div class="absolute z-50 left-1/2 -translate-x-1/2 bottom-full mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <div class="bg-gray-900 text-white text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap">
+                  <%= user.email_address %>
+                  <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1">
+                    <div class="border-4 border-transparent border-t-gray-900"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          </div>
         </div>
         
         <div class="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -116,7 +135,9 @@
               <i class="fas fa-trash mr-1"></i> Delete Board
             <% end %>
 
-            <%= link_to "Invite", board_invitation_new_path(@board), class: "inline-flex items-center px-2 sm:px-3 py-1.5 sm:py-2 border border-blue-300 shadow-sm text-xs sm:text-sm font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors" %>
+            <%= link_to board_invitation_new_path(@board), class: "inline-flex items-center px-2 sm:px-3 py-1.5 sm:py-2 border border-blue-300 shadow-sm text-xs sm:text-sm font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors" do %>
+              <i class="fas fa-user-plus mr-1"></i> Invite
+            <% end %>
           </div>
         </div>
       </div>
@@ -259,7 +280,7 @@
                                   <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
                                     <h3 class="text-lg font-semibold leading-6 text-gray-900" id="modal-title">Edit Card</h3>
                                     <div class="mt-4">
-                                    <!-- pass all users to the form -->
+                                   
                                       <%= render "cards/form", card: card, all_users: @all_users_related_to_board %>
                                     </div>
                                   </div>

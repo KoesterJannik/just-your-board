@@ -49,9 +49,7 @@ class InvitationController < ApplicationController
     puts "board: #{board}"
     # 3. add the user to the board
     BoardUser.create(board_id: board.id, user_id: Current.user.id)
-    #puts "board.users: #{board.users}"
-    # 4. redirect to the board
-    #notice = "Invitation accepted"
+
     # delete the invitation
     invitation.destroy
     redirect_to board_path(board.id), notice: "Invitation accepted"

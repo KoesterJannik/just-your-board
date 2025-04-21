@@ -1,23 +1,35 @@
-# Drag and Drop Kanban Board for yourself
+# Drag and Drop Kanban Board
 
-A simple kanband board with drag and drop functionality to learn more about ruby on rails.
+A simple Kanban board with drag and drop functionality built with Ruby on Rails.
+
+🔗 **Live Demo**: [https://rails-kanban.koesterjannik.com](https://rails-kanban.koesterjannik.com)
+
+## Features
+
+- Drag and drop cards between columns
+- Assign cards to users
+- Invite other users for collaboration
+- Email notifications when cards are assigned
+
+## How to run locally
 
 
-Public Link: https://rails-kanban.koesterjannik.com
+1. Install dependencies:
+   ```bash
+   bundle install
+   ```
+2. Copy and paste the .env.example file to .env and set the variables. We are using SES for emails
 
-Right now it only possible to drag cards and not columns.
+2. Set up the database:
+   ```bash
+   rails db:migrate
+   ```
 
-## Setup
+3. Start the server:
+   ```bash
+   bin/dev
+   ```
 
-```bash
-bundle install
-```
+## License
 
-```bash
-rails db:migrate
-```
-
-```bash
-rails s
-```
-
+This project is licensed under the MIT License.
