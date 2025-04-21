@@ -16,7 +16,8 @@ class HomeController < ApplicationController
       redirect_to register_path, notice: "Email already taken"
     else
       if @user.save
-        redirect_to root_path, notice: "Account created successfully"
+        start_new_session_for @user
+        redirect_to dashboard_path, notice: "Account created successfully"
       else
         # return the errors
         redirect_to register_path, notice: @user.errors.full_messages.join(", ")

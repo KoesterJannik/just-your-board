@@ -8,6 +8,7 @@ class CardsController < ApplicationController
 
   # GET /cards/1 or /cards/1.json
   def show
+    puts "show card"
   end
 
   # GET /cards/new
@@ -93,8 +94,15 @@ class CardsController < ApplicationController
 
   # PATCH/PUT /cards/1 or /cards/1.json
   def update
+    puts "Card Update Parameters: #{card_params.inspect}"
+    puts "Previous assignee_id: #{@card.assignee_id.inspect}"
+    
     respond_to do |format|
       if @card.update(card_params)
+        puts "New assignee_id: #{@card.assignee_id.inspect}"
+        puts "\e[42m\e[30m[NEW ASSIGNEE ID]\e[0m \e[32m#{@card.assignee_id}\e[0m"
+
+        puts "Saved changes: #{@card.saved_changes.inspect}"
         format.html { redirect_to @card.column.board, notice: "Card was successfully updated." }
         format.json { render :show, status: :ok, location: @card }
       else
@@ -122,6 +130,6 @@ class CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:name, :description, :column_id, :priority)
+      params.require(:card).permit(:name, :description, :column_id, :priority, :assignee_id)
     end
 end

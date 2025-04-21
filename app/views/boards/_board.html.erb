@@ -1,3 +1,14 @@
+
+
+<!-- DUMP the whole @all_users -->
+<div>
+  <h1>All Users</h1>
+  <ul>
+    <% @all_users.each do |user| %>
+      <li><%= user.email_address %></li>
+    <% end %>
+  </ul>
+</div>
 <div id="<%= dom_id board %>" class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-4 sm:py-8">
   <div class="max-w-[1800px] mx-auto px-3 sm:px-6 lg:px-8">
     <%# Board Header %>
@@ -153,7 +164,7 @@
                             <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
                               <h3 class="text-lg font-semibold leading-6 text-gray-900" id="modal-title">New Card</h3>
                               <div class="mt-4">
-                                <%= render "cards/form", card: Card.new(column: column) %>
+                                <%= render "cards/form", card: Card.new(column: column), all_users: @all_users %>
                               </div>
                             </div>
                           </div>
@@ -254,7 +265,8 @@
                                   <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
                                     <h3 class="text-lg font-semibold leading-6 text-gray-900" id="modal-title">Edit Card</h3>
                                     <div class="mt-4">
-                                      <%= render "cards/form", card: card %>
+                                    <!-- pass all users to the form -->
+                                      <%= render "cards/form", card: card, all_users: @all_users %>
                                     </div>
                                   </div>
                                 </div>
@@ -283,7 +295,7 @@
                       <i class="fas fa-clock mr-1"></i>
                       <%= card.created_at.strftime("%b %d, %Y") %>
                     </div>
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=<%= Current.user.email_address %>" 
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=<%= card.assignee.email_address %>" 
                          alt="Avatar" 
                          class="h-6 w-6 sm:h-8 sm:w-8 rounded-full bg-gray-100" />
                   </div>

@@ -8,6 +8,8 @@ class BoardsController < ApplicationController
 
   # GET /boards/1 or /boards/1.json
   def show
+    puts "MUHAHA"
+    @all_users = User.all
   end
 
   # GET /boards/new

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_18_200123) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_21_095020) do
   create_table "boards", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -28,6 +28,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_18_200123) do
     t.datetime "updated_at", null: false
     t.integer "priority"
     t.integer "position"
+    t.integer "assignee_id"
+    t.index ["assignee_id"], name: "index_cards_on_assignee_id"
     t.index ["column_id"], name: "index_cards_on_column_id"
   end
 
@@ -58,6 +60,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_18_200123) do
 
   add_foreign_key "boards", "users"
   add_foreign_key "cards", "columns"
+  add_foreign_key "cards", "users", column: "assignee_id"
   add_foreign_key "columns", "boards"
   add_foreign_key "sessions", "users"
 end
