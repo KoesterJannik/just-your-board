@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "invitation/accept/:token" => "invitation#accept", as: :accept_invitation
   resources :cards
   resources :columns
   resources :boards
@@ -15,6 +16,9 @@ Rails.application.routes.draw do
   post "register" => "home#create_account"
   root "home#index"
   resources :boards do
+    get "invitation/new"
+    post "invitation/create"
+
     resources :columns do
       resources :cards
     end

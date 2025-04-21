@@ -1,0 +1,8 @@
+
+<%= @board.title %>
+<p>
+  You are invited to join <%= @board.title %> 
+</p>
+<p>
+  Click <%= link_to "here", accept_invitation_url(@invitation_token) %> to accept the invitation.
+</p>

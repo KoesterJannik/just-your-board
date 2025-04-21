@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_21_195928) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_21_202127) do
   create_table "board_users", force: :cascade do |t|
     t.integer "board_id", null: false
     t.integer "user_id", null: false
@@ -50,6 +50,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_21_195928) do
     t.index ["board_id"], name: "index_columns_on_board_id"
   end
 
+  create_table "invitations", force: :cascade do |t|
+    t.string "token"
+    t.string "email"
+    t.integer "board_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_invitations_on_board_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -73,5 +82,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_21_195928) do
   add_foreign_key "cards", "columns"
   add_foreign_key "cards", "users", column: "assignee_id"
   add_foreign_key "columns", "boards"
+  add_foreign_key "invitations", "boards"
   add_foreign_key "sessions", "users"
 end

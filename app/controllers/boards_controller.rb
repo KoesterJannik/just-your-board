@@ -7,10 +7,13 @@ class BoardsController < ApplicationController
   end
 
   # GET /boards/1 or /boards/1.json
-  def show
-    puts "MUHAHA"
-    @all_users = User.all
-  end
+    def show
+      @all_users_related_to_board = BoardUser.where(board_id: @board.id)
+      # now we need to get the actual users based on the user_id in the all_users_related_to_board
+      @all_users_related_to_board = User.where(id: @all_users_related_to_board.map(&:user_id))
+      puts "all_users_related_to_board INSPECT: #{@all_users_related_to_board.inspect }"
+      
+    end
 
   # GET /boards/new
   def new

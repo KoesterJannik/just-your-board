@@ -1,0 +1,5 @@
+<%= form_with model: @invitation, url: board_invitation_create_path do |form| %>
+  <%= form.label :email %>
+  <%= form.email_field :email %>
+  <%= form.submit "Invite" %>
+<% end %>

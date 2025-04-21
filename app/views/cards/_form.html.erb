@@ -1,5 +1,6 @@
 
-<!-- DUMP all users -->
+<!-- DUMP ALL USERS -->
+
 <div>
   <h1>All Users</h1>
   <ul>
@@ -8,7 +9,6 @@
     <% end %>
   </ul>
 </div>
-
 
 <%= form_with(model: card, class: "space-y-6") do |form| %>
   <% if card.errors.any? %>
@@ -91,11 +91,12 @@
       <% end %>
     </div>
 
-    <!-- we are rending all possible users here and submit the user id of the selected user -->
     <div>
       <%= form.label :assignee, class: "block text-sm font-medium text-gray-700 mb-1" %>
       <%= form.select :assignee_id, all_users.map { |user| [user.email_address, user.id] }, { selected: card.assignee_id }, class: "block w-full pl-10 pr-3 py-2.5 rounded-lg border transition-colors duration-200 ease-in-out" %>
     </div>
+
+
   </div>
 
   <%= form.hidden_field :column_id %>
