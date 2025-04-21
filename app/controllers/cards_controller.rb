@@ -31,7 +31,7 @@ class CardsController < ApplicationController
 
       # Validate column exists
       user_id = Current.user.id
-      column = Column.find_by(id: request_body["column_id"], user_id: user_id)
+      column = Column.find_by(id: request_body["column_id"])
       unless column
         return render json: { error: "Column not found" }, status: :not_found
       end
