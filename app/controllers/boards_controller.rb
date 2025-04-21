@@ -1,9 +1,9 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[ show edit update destroy ]
-  before_action :current_user_only, only: %i[ show edit update destroy ]
+  before_action :authorize_board_access, only: %i[ show edit update destroy ]
   # GET /boards or /boards.json
   def index
-    @boards = Board.where(user: Current.user)
+    @boards = Current.user.boards + Current.user.shared_boards
   end
 
   # GET /boards/1 or /boards/1.json
@@ -24,14 +24,14 @@ class BoardsController < ApplicationController
   # POST /boards or /boards.json
   def create
     @board = Board.new(board_params)
-    # add the current user to the board
     @board.user = Current.user
-
-
 
     respond_to do |format|
       if @board.save
-        # add three defaults columns: todo, in progress, done
+        # Create BoardUser record for the owner
+        @board.board_users.create(user_id: Current.user.id)
+        
+        # Create default columns
         @board.columns.create(name: "To Do")
         # create dummy cards for the board
         @board.columns.first.cards.create(name: "Card 1", description: "Description 1", priority: "low")
@@ -82,9 +82,8 @@ class BoardsController < ApplicationController
       params.expect(board: [ :title, :description, :user_id ])
     end
     # filter so the user can only see their own boards and edit them
-    def current_user_only
-      @board = Board.find(params.expect(:id))
-      if @board.user != Current.user
+    def authorize_board_access
+      unless @board.user == Current.user || @board.users.include?(Current.user)
         redirect_to boards_path, alert: "You are not authorized to access this board"
       end
     end
