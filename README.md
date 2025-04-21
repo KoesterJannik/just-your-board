@@ -2,7 +2,7 @@
 
 A simple Kanban board with drag and drop functionality built with Ruby on Rails.
 
-🔗 **Live Demo**: [https://rails-kanban.koesterjannik.com](https://rails-kanban.koesterjannik.com)
+🔗 **Live Demo**: [https://kanban.koesterjannik.com](https://kanban.koesterjannik.com)
 
 ## Features
 
