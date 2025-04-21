@@ -20,31 +20,57 @@ class CardsController < ApplicationController
   end
 
   def update_positions
-    request_body = JSON.parse(request.body.read)
-    puts "Received parameters: #{request_body.inspect}"
-    column = Column.find(request_body["column_id"])
-    card_order = request_body["card_order"]
-    puts "Card order: #{card_order.inspect}"
-    counter  = 0
+    begin
+      request_body = JSON.parse(request.body.read)
 
-    for card in card_order
-      puts "Card: #{card.inspect}"
+      # Validate required fields
+      unless request_body.key?("column_id") && request_body.key?("card_order")
+        return render json: { error: "Missing required fields: column_id and card_order" }, status: :unprocessable_entity
+      end
 
-      card_id = card["cardId"]
-      card = Card.find(card_id)
-      card.update(column: column)
+      # Validate column exists
+      user_id = Current.user.id
+      column = Column.find_by(id: request_body["column_id"], user_id: user_id)
+      unless column
+        return render json: { error: "Column not found" }, status: :not_found
+      end
 
+      # Validate card_order is an array
+      card_order = request_body["card_order"]
+      unless card_order.is_a?(Array)
+        return render json: { error: "card_order must be an array" }, status: :unprocessable_entity
+      end
+
+      # Validate each card exists
+      card_order.each do |card_data|
+        unless card_data.is_a?(Hash) && card_data.key?("cardId")
+          return render json: { error: "Each card in card_order must have a cardId" }, status: :unprocessable_entity
+        end
+
+        card = Card.find_by(id: card_data["cardId"])
+        unless card
+          return render json: { error: "Card with id #{card_data["cardId"]} not found" }, status: :not_found
+        end
+      end
+
+      # Update card columns
+      card_order.each do |card_data|
+        card = Card.find(card_data["cardId"])
+        card.update(column: column)
+      end
+
+      # Update card positions
+      card_order.each_with_index do |card_data, index|
+        card = Card.find(card_data["cardId"])
+        card.update(position: index)
+      end
+
+      render json: { message: "Card positions updated successfully" }
+    rescue JSON::ParserError
+      render json: { error: "Invalid JSON format" }, status: :bad_request
+    rescue => e
+      render json: { error: e.message }, status: :internal_server_error
     end
-
-    for card in card_order
-      puts "Card: #{card.inspect}"
-      card_id = card["cardId"]
-      card = Card.find(card_id)
-      card.update(position: counter)
-      puts "Card with name: #{card.name} updated to position: #{counter}"
-      counter += 1
-    end
-    render json: { message: "Card positions updated" }
   end
 
   # POST /cards or /cards.json
