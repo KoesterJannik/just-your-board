@@ -96,7 +96,7 @@ class CardsController < ApplicationController
   def update
     puts "Card Update Parameters: #{card_params.inspect}"
     puts "Previous assignee_id: #{@card.assignee_id.inspect}"
-    
+
     respond_to do |format|
       if @card.update(card_params)
         puts "New assignee_id: #{@card.assignee_id.inspect}"

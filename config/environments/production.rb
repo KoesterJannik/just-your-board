@@ -79,14 +79,14 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
-  # Enable DNS rebinding protection and other `Host` header attacks.
-  # config.hosts = [
-  #   "example.com",     # Allow requests from example.com
-  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
-  # ]
-  #
-  # Skip DNS rebinding protection for the default health check endpoint.
-  # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+    # Enable DNS rebinding protection and other `Host` header attacks.
+    # config.hosts = [
+    #   "example.com",     # Allow requests from example.com
+    #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
+    # ]
+    #
+    # Skip DNS rebinding protection for the default health check endpoint.
+    # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
     # email setup
     config.action_mailer.raise_delivery_errors = true
@@ -95,7 +95,7 @@ Rails.application.configure do
     config.action_mailer.default_url_options = { host: host }
     config.x.mail_from = ENV["MAIL_FROM"]
     config.action_mailer.perform_deliveries = true
-  
+
     ActionMailer::Base.smtp_settings = {
       address: ENV["SMTP_ADDRESS"],
       port: ENV["SMTP_PORT"],

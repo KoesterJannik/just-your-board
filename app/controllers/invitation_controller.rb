@@ -1,15 +1,14 @@
 class InvitationController < ApplicationController
-
   def new
     @invitation = Invitation.new
   end
 
-  
+
   def create
     # The board_id will be in params[:board_id] because of nested routes
     board_id = params[:board_id]
     email = invitation_params[:email]
-    
+
     user = User.find_by(email_address: email)
     if user
       # Check if the user is the owner of the board
@@ -31,7 +30,7 @@ class InvitationController < ApplicationController
       redirect_to board_path(board_id), notice: "User already has an invitation to this board"
       return
     end
-    
+
     # Create and send the invitation
     Board.find(board_id).invitations.create(email: email)
     invitation_token = Board.find(board_id).invitations.last.token
@@ -61,6 +60,4 @@ class InvitationController < ApplicationController
     # Remove board_id from required params since it comes from the URL
     params.require(:invitation).permit(:email)
   end
-
-
 end

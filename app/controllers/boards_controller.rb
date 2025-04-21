@@ -6,13 +6,12 @@ class BoardsController < ApplicationController
     @boards = Current.user.boards + Current.user.shared_boards
   end
 
-  # GET /boards/1 or /boards/1.json
+    # GET /boards/1 or /boards/1.json
     def show
       @all_users_related_to_board = BoardUser.where(board_id: @board.id)
       # now we need to get the actual users based on the user_id in the all_users_related_to_board
       @all_users_related_to_board = User.where(id: @all_users_related_to_board.map(&:user_id))
       puts "all_users_related_to_board INSPECT: #{@all_users_related_to_board.inspect }"
-      
     end
 
   # GET /boards/new
@@ -33,7 +32,7 @@ class BoardsController < ApplicationController
       if @board.save
         # Create BoardUser record for the owner
         @board.board_users.create(user_id: Current.user.id)
-        
+
         # Create default columns
         @board.columns.create(name: "To Do")
         # create dummy cards for the board
